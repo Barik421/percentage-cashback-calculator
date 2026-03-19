@@ -9,9 +9,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   const labelOne = document.getElementById("label-one");
   const labelTwo = document.getElementById("label-two");
   const openOptionsButton = document.getElementById("open-options");
+  const backToLargeCalculatorButton = document.getElementById("back-to-large-calculator");
   const copyResultButton = document.getElementById("copy-result");
   const switchModeButton = document.getElementById("switch-mode");
   const resetValuesButton = document.getElementById("reset-values");
+  const largeCalculatorView = document.getElementById("large-calculator-view");
+  const largeSettingsView = document.getElementById("large-settings-view");
+  const languageSelect = document.getElementById("language-select");
+  const defaultModeSelect = document.getElementById("default-mode-select");
+  const rememberValuesInput = document.getElementById("remember-values");
+  const saveStatus = document.getElementById("save-status");
 
   let settings = await app.getSettings();
   const remembered = settings.rememberValues ? await app.getRememberedValues() : { valueOne: "", valueTwo: "" };
@@ -23,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.lang = settings.language;
     app.applyTranslations(document, settings.language);
     openOptionsButton.textContent = app.getMessage(settings.language, "openOptions");
+    backToLargeCalculatorButton.textContent = app.getMessage(settings.language, "backToCalculator");
     copyResultButton.textContent = app.getMessage(settings.language, "copyResult");
     switchModeButton.textContent = app.getMessage(settings.language, "switchMode");
     resetValuesButton.textContent = app.getMessage(settings.language, "resetValues");
@@ -32,6 +40,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     labelOne.textContent = app.getMessage(settings.language, isCashback ? "amountLabel" : "totalAmountLabel");
     labelTwo.textContent = app.getMessage(settings.language, isCashback ? "percentLabel" : "partAmountLabel");
     resultLabel.textContent = app.getMessage(settings.language, isCashback ? "cashbackResultLabel" : "percentResultLabel");
+    renderSettingsControls();
+  }
+
+  function renderSettingsControls() {
+    defaultModeSelect.innerHTML = "";
+
+    [
+      { value: "cashback", label: app.getMessage(settings.language, "cashbackMode") },
+      { value: "percent", label: app.getMessage(settings.language, "percentMode") }
+    ].forEach((option) => {
+      const optionElement = document.createElement("option");
+      optionElement.value = option.value;
+      optionElement.textContent = option.label;
+      defaultModeSelect.appendChild(optionElement);
+    });
+
+    languageSelect.value = settings.language;
+    defaultModeSelect.value = settings.defaultMode;
+    rememberValuesInput.checked = Boolean(settings.rememberValues);
+  }
+
+  function setView(viewName) {
+    const showSettings = viewName === "settings";
+    largeCalculatorView.classList.toggle("hidden", showSettings);
+    largeSettingsView.classList.toggle("hidden", !showSettings);
   }
 
   async function renderCalculation(hintOverrideKey) {
@@ -55,6 +88,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 1200);
   }
 
+  function clearSaveStatusSoon() {
+    window.clearTimeout(clearSaveStatusSoon.timerId);
+    clearSaveStatusSoon.timerId = window.setTimeout(() => {
+      saveStatus.textContent = "";
+    }, 1200);
+  }
+
+  async function persistSettings() {
+    settings = await app.saveSettings({
+      language: languageSelect.value,
+      defaultMode: defaultModeSelect.value,
+      rememberValues: rememberValuesInput.checked
+    });
+
+    if (!settings.rememberValues) {
+      await app.clearRememberedValues();
+    }
+
+    updateStaticText();
+    await renderCalculation();
+    saveStatus.textContent = app.getMessage(settings.language, "settingsSaved");
+    clearSaveStatusSoon();
+  }
+
   [valueOneInput, valueTwoInput].forEach((input) => {
     input.addEventListener("input", () => {
       renderCalculation();
@@ -65,7 +122,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   app.handleEnterToAdvance([valueOneInput, valueTwoInput]);
 
   openOptionsButton.addEventListener("click", () => {
-    chrome.runtime.openOptionsPage();
+    setView("settings");
+  });
+
+  backToLargeCalculatorButton.addEventListener("click", () => {
+    setView("calculator");
   });
 
   copyResultButton.addEventListener("click", async () => {
@@ -100,6 +161,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     valueOneInput.focus();
   });
 
+  languageSelect.addEventListener("change", persistSettings);
+  defaultModeSelect.addEventListener("change", persistSettings);
+  rememberValuesInput.addEventListener("change", persistSettings);
+
   chrome.storage.onChanged.addListener(async (changes, areaName) => {
     if (areaName === "sync" && (changes.language || changes.defaultMode || changes.rememberValues)) {
       settings = await app.getSettings();
@@ -110,4 +175,5 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   updateStaticText();
   await renderCalculation();
+  setView("calculator");
 });

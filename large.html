@@ -10,11 +10,10 @@
     <main class="shell">
       <section class="hero">
         <p class="eyebrow" data-i18n="popupEyebrow">Quick calculator</p>
-        <h1 class="title" data-i18n="extensionName">Percentage Cashback Calculator</h1>
         <p class="subtitle" data-i18n="largeSubtitle">A more spacious view for longer work sessions.</p>
       </section>
 
-      <section class="content-card">
+      <section id="large-calculator-view" class="content-card large-view">
         <div class="toolbar">
           <div class="mode-chip">
             <span data-i18n="currentModeLabel">Mode</span>
@@ -22,7 +21,6 @@
           </div>
           <div class="toolbar-actions">
             <button id="open-options" class="secondary-button" type="button"></button>
-            <button id="copy-result" class="secondary-button" type="button"></button>
           </div>
         </div>
 
@@ -40,6 +38,7 @@
           <div class="actions">
             <button id="switch-mode" class="secondary-button" type="button"></button>
             <button id="reset-values" class="secondary-button" type="button"></button>
+            <button id="copy-result" class="secondary-button" type="button"></button>
           </div>
         </form>
 
@@ -47,6 +46,42 @@
           <p id="result-label" class="result-label"></p>
           <p id="result-value" class="result-value">--</p>
           <p id="hint-text" class="hint-text"></p>
+        </section>
+      </section>
+
+      <section id="large-settings-view" class="content-card large-view hidden">
+        <header class="settings-header-bar">
+          <button id="back-to-large-calculator" class="secondary-button back-button-large" type="button"></button>
+        </header>
+
+        <section class="settings-panel">
+          <p class="settings-eyebrow" data-i18n="settingsEyebrow">Calculator preferences</p>
+          <p class="settings-subtitle" data-i18n="settingsSubtitle">Keep the calculator simple and ready for your daily workflow.</p>
+
+          <form class="settings-form-large">
+            <label class="setting-row-large">
+              <span class="field-label" data-i18n="languageLabel">Language</span>
+              <select id="language-select" class="setting-control-large">
+                <option value="en">English</option>
+                <option value="uk">Українська</option>
+              </select>
+            </label>
+
+            <label class="setting-row-large">
+              <span class="field-label" data-i18n="defaultModeLabel">Default mode</span>
+              <select id="default-mode-select" class="setting-control-large"></select>
+            </label>
+
+            <label class="setting-toggle-large">
+              <span>
+                <strong class="field-label" data-i18n="rememberValuesLabel">Remember last values</strong>
+                <span class="settings-help" data-i18n="rememberValuesHelp">Restore the last entered values when you reopen the calculator.</span>
+              </span>
+              <input id="remember-values" type="checkbox">
+            </label>
+          </form>
+
+          <p id="save-status" class="hint-text save-status-large" aria-live="polite"></p>
         </section>
       </section>
     </main>
