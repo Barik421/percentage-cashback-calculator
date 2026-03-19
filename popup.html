@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Cashback Calculator</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body class="page page-popup">
+    <main class="panel">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow" data-i18n="popupEyebrow">Quick calculator</p>
+          <h1 class="title" data-i18n="extensionName">Percentage Cashback Calculator</h1>
+        </div>
+        <button id="open-settings" class="icon-button" type="button" aria-label="Open settings" title="Open settings">
+          <span aria-hidden="true">S</span>
+        </button>
+      </header>
+
+      <section class="mode-chip" aria-live="polite">
+        <span data-i18n="currentModeLabel">Mode</span>
+        <strong id="current-mode-text"></strong>
+      </section>
+
+      <form id="calculator-form" class="calculator" novalidate>
+        <label class="field">
+          <span id="label-one" class="field-label"></span>
+          <input id="value-one" class="field-input" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+        </label>
+
+        <label class="field">
+          <span id="label-two" class="field-label"></span>
+          <input id="value-two" class="field-input" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+        </label>
+
+        <div class="actions">
+          <button id="reset-values" class="secondary-button" type="button"></button>
+          <button id="copy-result" class="secondary-button" type="button"></button>
+        </div>
+      </form>
+
+      <section class="result-card" aria-live="polite">
+        <p id="result-label" class="result-label"></p>
+        <p id="result-value" class="result-value">--</p>
+        <p id="hint-text" class="hint-text"></p>
+      </section>
+
+      <footer class="panel-footer">
+        <button id="open-large-view" class="link-button" type="button"></button>
+      </footer>
+    </main>
+
+    <script src="shared.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

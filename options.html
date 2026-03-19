@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Cashback Calculator Settings</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body class="page page-options">
+    <main class="settings-shell">
+      <section class="settings-card">
+        <header class="settings-header">
+          <p class="eyebrow" data-i18n="settingsEyebrow">Extension settings</p>
+          <h1 class="title" data-i18n="settingsTitle">Settings</h1>
+          <p class="subtitle" data-i18n="settingsSubtitle">Keep the calculator simple and ready for your daily workflow.</p>
+        </header>
+
+        <form id="settings-form" class="settings-form">
+          <label class="setting-row">
+            <span class="setting-label" data-i18n="languageLabel">Language</span>
+            <select id="language-select" class="setting-control">
+              <option value="en">English</option>
+              <option value="uk">Українська</option>
+            </select>
+          </label>
+
+          <label class="setting-row">
+            <span class="setting-label" data-i18n="defaultModeLabel">Default mode</span>
+            <select id="default-mode-select" class="setting-control"></select>
+          </label>
+
+          <label class="setting-toggle">
+            <span>
+              <strong class="setting-label" data-i18n="rememberValuesLabel">Remember last values</strong>
+              <span class="setting-help" data-i18n="rememberValuesHelp">Restore the last entered values when you reopen the calculator.</span>
+            </span>
+            <input id="remember-values" type="checkbox">
+          </label>
+        </form>
+
+        <p id="save-status" class="save-status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

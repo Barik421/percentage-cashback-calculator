@@ -1,0 +1,160 @@
+:root {
+  color-scheme: light;
+  --bg: #fff8f7;
+  --surface: #ffffff;
+  --surface-soft: #fff7f7;
+  --text: #241818;
+  --muted: #766666;
+  --accent: #d53232;
+  --border: #eed4d4;
+  --shadow: 0 24px 56px rgba(164, 40, 40, 0.08);
+  --radius-xl: 34px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --font: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(213, 50, 50, 0.08), transparent 25%),
+    linear-gradient(180deg, #fffefe 0%, var(--bg) 100%);
+}
+
+.page-options {
+  padding: 30px 20px;
+}
+
+.settings-shell {
+  width: min(680px, 100%);
+  margin: 0 auto;
+}
+
+.settings-card {
+  display: grid;
+  gap: 22px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 38px);
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.settings-form {
+  display: grid;
+  gap: 16px;
+}
+
+.setting-row,
+.setting-toggle {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-soft);
+}
+
+.setting-row {
+  align-items: center;
+}
+
+.setting-toggle {
+  align-items: flex-start;
+}
+
+.setting-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.setting-help {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.setting-control {
+  min-width: 190px;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  font: inherit;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.setting-control:focus {
+  outline: none;
+  border-color: rgba(213, 50, 50, 0.55);
+  box-shadow: 0 0 0 4px rgba(213, 50, 50, 0.12);
+}
+
+input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  accent-color: var(--accent);
+}
+
+.save-status {
+  min-height: 20px;
+  margin: 0;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .page-options {
+    padding: 18px;
+  }
+
+  .settings-card {
+    padding: 20px;
+  }
+
+  .setting-row,
+  .setting-toggle {
+    flex-direction: column;
+  }
+
+  .setting-control {
+    min-width: 100%;
+  }
+}

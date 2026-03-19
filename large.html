@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Cashback Calculator</title>
+    <link rel="stylesheet" href="large.css">
+  </head>
+  <body class="page page-large">
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow" data-i18n="popupEyebrow">Quick calculator</p>
+        <h1 class="title" data-i18n="extensionName">Percentage Cashback Calculator</h1>
+        <p class="subtitle" data-i18n="largeSubtitle">A more spacious view for longer work sessions.</p>
+      </section>
+
+      <section class="content-card">
+        <div class="toolbar">
+          <div class="mode-chip">
+            <span data-i18n="currentModeLabel">Mode</span>
+            <strong id="current-mode-text"></strong>
+          </div>
+          <div class="toolbar-actions">
+            <button id="open-options" class="secondary-button" type="button"></button>
+            <button id="copy-result" class="secondary-button" type="button"></button>
+          </div>
+        </div>
+
+        <form id="calculator-form" class="calculator" novalidate>
+          <label class="field">
+            <span id="label-one" class="field-label"></span>
+            <input id="value-one" class="field-input" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+          </label>
+
+          <label class="field">
+            <span id="label-two" class="field-label"></span>
+            <input id="value-two" class="field-input" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+          </label>
+
+          <div class="actions">
+            <button id="switch-mode" class="secondary-button" type="button"></button>
+            <button id="reset-values" class="secondary-button" type="button"></button>
+          </div>
+        </form>
+
+        <section class="result-card" aria-live="polite">
+          <p id="result-label" class="result-label"></p>
+          <p id="result-value" class="result-value">--</p>
+          <p id="hint-text" class="hint-text"></p>
+        </section>
+      </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script src="large.js"></script>
+  </body>
+</html>

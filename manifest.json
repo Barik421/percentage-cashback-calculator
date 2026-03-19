@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Percentage Cashback Calculator",
+  "description": "Quick cashback and percentage calculations with a compact popup, large view, and simple settings.",
+  "version": "1.0.0",
+  "action": {
+    "default_title": "Percentage Cashback Calculator",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "storage"
+  ]
+}
