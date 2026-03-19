@@ -1,6 +1,6 @@
 # Percentage Cashback Calculator
 
-Small Chrome Extension (Manifest V3) for fast cashback and percent calculations in a compact popup, with a matching large view and simple settings.
+Lightweight Chrome Extension for fast cashback and percentage calculations, with a compact popup, large view, and English/Ukrainian support.
 
 ## Features
 

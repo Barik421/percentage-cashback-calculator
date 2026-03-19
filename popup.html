@@ -8,47 +8,85 @@
   </head>
   <body class="page page-popup">
     <main class="panel">
-      <header class="panel-header">
-        <div>
-          <p class="eyebrow" data-i18n="popupEyebrow">Quick calculator</p>
-          <h1 class="title" data-i18n="extensionName">Percentage Cashback Calculator</h1>
-        </div>
-        <button id="open-settings" class="icon-button" type="button" aria-label="Open settings" title="Open settings">
-          <span aria-hidden="true">S</span>
-        </button>
-      </header>
+      <section id="calculator-view" class="popup-view">
+        <header class="topbar">
+          <section class="mode-chip mode-chip-compact" aria-live="polite">
+            <span data-i18n="currentModeLabel">Mode</span>
+            <strong id="current-mode-text"></strong>
+          </section>
 
-      <section class="mode-chip" aria-live="polite">
-        <span data-i18n="currentModeLabel">Mode</span>
-        <strong id="current-mode-text"></strong>
+          <button id="open-settings" class="icon-button" type="button" aria-label="Open settings" title="Open settings">
+            <svg class="gear-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 8.75A3.25 3.25 0 1 0 12 15.25A3.25 3.25 0 1 0 12 8.75Z" />
+              <path d="M19.14 13.2L20.73 12L19.14 10.8L18.74 8.89L16.69 8.58L15.62 6.78L13.75 7.44L12 6.25L10.25 7.44L8.38 6.78L7.31 8.58L5.26 8.89L4.86 10.8L3.27 12L4.86 13.2L5.26 15.11L7.31 15.42L8.38 17.22L10.25 16.56L12 17.75L13.75 16.56L15.62 17.22L16.69 15.42L18.74 15.11L19.14 13.2Z" />
+            </svg>
+          </button>
+        </header>
+
+        <form id="calculator-form" class="calculator" novalidate>
+          <label class="field">
+            <span id="label-one" class="field-label"></span>
+            <input id="value-one" class="field-input" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+          </label>
+
+          <label class="field">
+            <span id="label-two" class="field-label"></span>
+            <input id="value-two" class="field-input" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+          </label>
+
+          <div class="actions">
+            <button id="reset-values" class="secondary-button" type="button"></button>
+            <button id="copy-result" class="secondary-button" type="button"></button>
+          </div>
+        </form>
+
+        <section class="result-card" aria-live="polite">
+          <p id="result-label" class="result-label"></p>
+          <p id="result-value" class="result-value">--</p>
+          <p id="hint-text" class="hint-text"></p>
+        </section>
+
+        <footer class="panel-footer">
+          <button id="open-large-view" class="link-button small-link-button" type="button"></button>
+        </footer>
       </section>
 
-      <form id="calculator-form" class="calculator" novalidate>
-        <label class="field">
-          <span id="label-one" class="field-label"></span>
-          <input id="value-one" class="field-input" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
-        </label>
+      <section id="settings-view" class="popup-view hidden">
+        <header class="settings-topbar">
+          <button id="back-to-calculator" class="back-button" type="button"></button>
+        </header>
 
-        <label class="field">
-          <span id="label-two" class="field-label"></span>
-          <input id="value-two" class="field-input" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
-        </label>
+        <section class="settings-mini-card">
+          <p class="mini-eyebrow" data-i18n="settingsEyebrow">Calculator preferences</p>
+          <h2 class="mini-title" data-i18n="settingsTitle">Preferences</h2>
+          <p class="mini-subtitle" data-i18n="settingsSubtitle">Keep the calculator simple and ready for your daily workflow.</p>
 
-        <div class="actions">
-          <button id="reset-values" class="secondary-button" type="button"></button>
-          <button id="copy-result" class="secondary-button" type="button"></button>
-        </div>
-      </form>
+          <form id="popup-settings-form" class="popup-settings-form">
+            <label class="setting-row compact-setting">
+              <span class="setting-label" data-i18n="languageLabel">Language</span>
+              <select id="language-select" class="setting-control">
+                <option value="en">English</option>
+                <option value="uk">Українська</option>
+              </select>
+            </label>
 
-      <section class="result-card" aria-live="polite">
-        <p id="result-label" class="result-label"></p>
-        <p id="result-value" class="result-value">--</p>
-        <p id="hint-text" class="hint-text"></p>
+            <label class="setting-row compact-setting">
+              <span class="setting-label" data-i18n="defaultModeLabel">Default mode</span>
+              <select id="default-mode-select" class="setting-control"></select>
+            </label>
+
+            <label class="setting-toggle compact-toggle">
+              <span>
+                <strong class="setting-label" data-i18n="rememberValuesLabel">Remember last values</strong>
+                <span class="setting-help" data-i18n="rememberValuesHelp">Restore the last entered values when you reopen the calculator.</span>
+              </span>
+              <input id="remember-values" type="checkbox">
+            </label>
+          </form>
+
+          <p id="save-status" class="save-status" aria-live="polite"></p>
+        </section>
       </section>
-
-      <footer class="panel-footer">
-        <button id="open-large-view" class="link-button" type="button"></button>
-      </footer>
     </main>
 
     <script src="shared.js"></script>
