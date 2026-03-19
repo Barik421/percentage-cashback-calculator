@@ -21,7 +21,8 @@ Small Chrome Extension (Manifest V3) for fast cashback and percent calculations 
 - `large.html`, `large.css`, `large.js`
 - `options.html`, `options.css`, `options.js`
 - `shared.js`
-- `icons/placeholder-icon.svg`
+- `icons/icon.svg`
+- `icons/icon-16.png`, `icon-32.png`, `icon-48.png`, `icon-128.png`
 
 ## Install
 
@@ -35,4 +36,4 @@ Small Chrome Extension (Manifest V3) for fast cashback and percent calculations 
 - Default mode is Cashback.
 - Language, mode, and remember-values preference are stored in `chrome.storage.sync`.
 - Last entered values are stored in `chrome.storage.local` only when remember-values is enabled.
-- A simple SVG placeholder icon is included; if you want toolbar/store icons, replace it with PNG sizes in the manifest later.
+- The extension includes a simple red/white icon set for Chrome toolbar and extension pages.
