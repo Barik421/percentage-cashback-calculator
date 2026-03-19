@@ -24,13 +24,6 @@ Lightweight Chrome Extension for fast cashback and percentage calculations, with
 - `icons/icon.svg`
 - `icons/icon-16.png`, `icon-32.png`, `icon-48.png`, `icon-128.png`
 
-## Install
-
-1. Open Chrome and go to `chrome://extensions`.
-2. Enable Developer mode.
-3. Click Load unpacked.
-4. Select this folder: `/Users/brnv/Documents/Cashback calculator`.
-
 ## Notes
 
 - Default mode is Cashback.
